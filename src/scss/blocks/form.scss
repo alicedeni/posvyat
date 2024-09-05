@@ -1,0 +1,172 @@
+.registration-form {
+  max-width: 1217px; 
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+.head-title{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+.form-grid {
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+  &-item {
+    display: flex;
+    gap: 10px;
+  }
+  &-two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+.form-grid > div {
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; 
+  font-size: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 8px 20px;
+  border: 1px solid gray;
+  border-radius: 18px;
+  height: 36px; 
+  background-color: transparent;
+  color: white; 
+  font-size: 20px;
+  cursor: url('../../assets/icons/Pointer.svg'), auto;
+}
+
+textarea {
+  height: 160px; 
+  resize: none; 
+}
+
+input:focus,
+textarea:focus {
+  outline: none; 
+  border-color: $white; 
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: $grey; 
+}
+
+input:not(:placeholder-shown),
+textarea:not(:placeholder-shown) {
+  border-color: $white; 
+}
+
+input[type="date"]:invalid {
+  border-color: $grey;
+}
+
+
+button {
+  margin-top: 20px;
+  padding: 0px 20%;
+  text-align: center; 
+  border: none;
+  border-radius: 30px; 
+  background-color: $light-purple; 
+  color: black; 
+  font-size: 24px; 
+  cursor: pointer; 
+  display: block;
+  margin-left: auto; 
+  margin-right: auto; 
+  height: 72px;
+}
+
+.error {
+  color: gray;
+  font-size: 12px; 
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.priority-box {
+  background-color: $grey3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 767px) {
+  h1{
+    font-size: 24px;
+  }
+  .head-title{
+    font-size: 24px;
+  }
+  label {
+    font-size: 16px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  textarea {
+    font-size: 16px;
+  }
+  textarea {
+    height: 145px; 
+    border-radius: 30px;
+    resize: none; 
+  }
+  .registration-form {
+    padding: 20px 40px;
+  }
+
+  .registration {
+    margin-top: 40px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap:15px;
+    margin-bottom: 15px;
+    &-two {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
+    &-item {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
+  }
+  button {
+    font-size: 16px; 
+    height: 34px;
+  }
+  .error {
+    bottom: -12px;
+  }
+  .priority-box {
+    width: 75%;
+  }
+}

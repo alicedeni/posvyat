@@ -1,0 +1,53 @@
+.custom-select {
+    position: relative;
+    width: 100%;
+  }
+  
+  .select-header {
+    width: 100%;
+    padding: 8px 20px;
+    border: 1px solid white;
+    border-radius: 18px;
+    height: 36px; 
+    background-color: transparent;
+    color: white; 
+    font-size: 20px;
+    cursor: url('../../assets/icons/Pointer.svg'), auto;
+  }
+  
+  .select-options {
+    font-size: 20px;
+    list-style-type: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: $grey3;
+    border-radius: 16px;
+    z-index: 1000;
+    margin-top: 4px;
+    cursor: url('../../assets/icons/Pointer.svg'), auto;
+  }
+  
+  .select-option {
+    margin: 5px;
+    padding: 12px 24px;
+    color: white;
+    cursor: url('../../assets/icons/Pointer.svg'), auto;
+  }
+  
+  .select-option:hover,
+  .select-option.hovered {
+    margin: 5px;
+    background-color: $grey2;
+    border-radius: 10px;    
+  }
+
+  @media (max-width: 767px) {
+    .select-options {
+        font-size: 16px;
+    }
+    .select-header {
+        font-size: 16px;
+    }
+  }
