@@ -312,3 +312,45 @@
 .hover-image:hover {
   transform: scale(1.2);
 }
+
+.scrollable-rectangle {
+  width: 100%;
+  background-color: $grey3;
+  position: relative;
+  margin: 20px auto;
+  padding: 20px 0px;
+  transform: skewY(1deg);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+
+.image-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth; 
+  padding: 20px 0;
+  margin: 20px 0px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.image-container::-webkit-scrollbar {
+  display: none; 
+}
+
+.image-container {
+  -ms-overflow-style: none; 
+}
+
+.image-container {
+  scrollbar-width: none;
+}
+
+.scrollable-image {
+  min-width: 200px; 
+  margin-right: 20px;
+  height: auto; 
+}

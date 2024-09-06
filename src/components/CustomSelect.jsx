@@ -32,7 +32,7 @@ const CustomSelect = ({ name, value, onChange, options }) => {
   return (
     <div className="custom-select">
       <div className="select-header" onClick={toggleOpen}>
-        {options.find((option) => option.value === selectedValue)?.label}
+        {options.find((option) => option.value === selectedValue)?.label || options[0].label}
       </div>
       {isOpen && (
         <ul className="select-options">
