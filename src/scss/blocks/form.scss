@@ -2,6 +2,10 @@
   max-width: 1217px; 
   margin: 0 auto;
   padding: 20px;
+  &-text {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
 }
 
 h1 {
@@ -22,17 +26,31 @@ h1 {
   &-item {
     display: flex;
     gap: 10px;
+    &-1 {
+      width: 65%;
+    }
+    &-2 {
+      width: 32%;
+    }
   }
   &-two {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
     margin-bottom: 40px;
+    position: relative;
   }
 }
 
 .form-grid > div {
   position: relative;
+}
+
+.form-img {
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
 label {
@@ -100,12 +118,41 @@ button {
 }
 
 .error {
-  color: gray;
+  color: $orange;
   font-size: 12px; 
   position: absolute;
   bottom: -20px;
   left: 0;
 }
+
+.error-input {
+  border: 2px solid $orange;
+}
+
+.error-message {
+  color: $orange;
+  font-size: 10px;
+  position: absolute;
+  align-items: center;
+  top: 60%;
+  right: 20px;
+  &-2 {
+    color: $orange;
+    font-size: 10px;
+    position: absolute;
+    align-items: center;
+    top: 40px;
+    left: 40%;
+  }
+  &-3{
+    color: $orange;
+    font-size: 10px;
+    position: absolute;
+    align-items: center;
+    top: 40px;
+    right: 10px;
+  }
+} 
 
 .priority-box {
   background-color: $grey3;
@@ -115,7 +162,36 @@ button {
   gap: 10px;
 }
 
-@media (max-width: 767px) {
+.add-person {
+  padding: 0px 20px;
+  border: 1px solid gray;
+  border-radius: 18px;
+  height: 36px; 
+  background-color: transparent;
+  color: white; 
+  font-size: 20px;
+  position: absolute;
+}
+.add {
+  display: flex;
+  flex-direction: row;
+}
+
+.remove-person {
+  text-align: center;
+  padding: 0px 20px;
+  border: 1px solid gray;
+  border-radius: 18px;
+  height: 36px; 
+  background-color: transparent;
+  color: white; 
+  font-size: 20px;
+  position: absolute;
+  margin-left: 50%;
+  margin-top: -3%;
+}
+
+@media (max-width: 768px) {
   h1{
     font-size: 24px;
   }
@@ -139,6 +215,9 @@ button {
   }
   .registration-form {
     padding: 20px 40px;
+    &-text {
+      font-size: 14px;
+    }
   }
 
   .registration {
@@ -157,8 +236,26 @@ button {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       gap: 15px;
+      &-1 {
+        width: 100%;
+      }
+      &-2 {
+        width: 100%;
+      }
     }
   }
+
+  .form-img {
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items:self-start;
+  }
+
   button {
     font-size: 16px; 
     height: 34px;
@@ -167,6 +264,41 @@ button {
     bottom: -12px;
   }
   .priority-box {
-    width: 75%;
+    width: 100%;
   }
+  .error-message {
+    &-2{
+      color: $orange;
+      font-size: 10px;
+      position: absolute;
+      align-items: center;
+      top: 30px;
+      left: 5%;
+    }
+    &-3 {
+      color: $orange;
+      font-size: 10px;
+      position: absolute;
+      align-items: center;
+      top: 110px;
+    }
+  } 
+  .remove-person {
+    border: none;
+    margin-top: -38px;
+    margin-left: 85%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .error-message {
+    &-2 {
+      color: $orange;
+      font-size: 10px;
+      position: absolute;
+      align-items: center;
+      top: 40px;
+      left: 35%;
+    }
+  } 
 }

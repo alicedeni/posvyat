@@ -11,52 +11,103 @@ const PlaceForm = () => {
     phone: "",
     program: "",
     group: "",
-    course: "",
+    course: 1,
     people_custom: [""]
   });
-
+  
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateField = (field, value) => {
+    const newErrors = { ...errors };
     const nameRegex = /^[А-ЯЁ][а-яё]+$/;
-    const surnameRegex = /^[А-ЯЁ][а-яё]+$/; 
-    const middleNameRegex = /^[А-ЯЁ][а-яё]+$/; 
     const vkRegex = /^https?:\/\/(www\.)?vk\.com\/[a-zA-Z0-9._-]+$/; 
     const tgRegex = /^@?[a-zA-Z0-9_]{5,}$/; 
-    const phoneRegex = /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/; 
+    const phoneRegex = /^(?:\+7|8)\d{10}$|^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/; 
 
-    if (!nameRegex.test(formData.name)) {
-      newErrors.name = "Имя должно быть на русском языке";
+    switch (field) {
+      case 'name':
+        if (!value) {
+          newErrors.name = "Обязательное поле";
+        } else if (!nameRegex.test(value)) {
+          newErrors.name = "Неверный формат";
+        } else {
+          delete newErrors.name;
+        }
+        break;
+      case 'surname':
+        if (!value) {
+          newErrors.surname = "Обязательное поле";
+        } else if (!nameRegex.test(value)) {
+          newErrors.surname = "Неверный формат";
+        } else {
+          delete newErrors.surname;
+        }
+        break;
+      case 'middle_name':
+        if (value && !nameRegex.test(value)) {
+          newErrors.middle_name = "Неверный формат";
+        } else {
+          delete newErrors.middle_name;
+        }
+        break;
+      case 'vk':
+        if (!value) {
+          newErrors.vk = "Обязательное поле";
+        } else if (!vkRegex.test(value)) {
+          newErrors.vk = "Неверный формат";
+        } else {
+          delete newErrors.vk;
+        }
+        break;
+      case 'tg':
+        if (!value) {
+          newErrors.tg = "Обязательное поле";
+        } else if (!tgRegex.test(value)) {
+          newErrors.tg = "Неверный формат";
+        } else {
+          delete newErrors.tg;
+        }
+        break;
+      case 'phone':
+        if (!value) {
+          newErrors.phone = "Обязательное поле";
+        } else if (!phoneRegex.test(value)) {
+          newErrors.phone = "Неверный формат";
+        } else {
+          delete newErrors.phone;
+        }
+        break;
+      case 'program':
+        if (!value) {
+          newErrors.program = "Обязательное поле";
+        } else {
+          delete newErrors.program;
+        }
+        break;
+      case 'group':
+        if (!value) {
+          newErrors.group = "Обязательное поле";
+        } else {
+          delete newErrors.group;
+        }
+        break;
+      case 'course':
+        if (!value) {
+          newErrors.course = "Обязательное поле";
+        } else {
+          delete newErrors.course;
+        }
+        break;
+      default:
+        break;
     }
-    if (!surnameRegex.test(formData.surname)) {
-      newErrors.surname = "Фамилия должна быть на русском языке";
-    }
-    if (formData.middle_name && !middleNameRegex.test(formData.middle_name)) {
-      newErrors.middle_name = "Отчество должно быть на русском языке";
-    }
-    if (!vkRegex.test(formData.vk)) {
-      newErrors.vk = "Введите корректную ссылку на VK";
-    }
-    if (!tgRegex.test(formData.tg)) {
-      newErrors.tg = "Введите корректную ссылку на tg";
-    }
-    if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Введите корректный номер телефона";
-    }
-    if (!formData.program) {
-      newErrors.program = "Введите образовательную программу";
-    }
-    if (!formData.group) {
-      newErrors.group = "Введите группу";
-    }
-    if (!formData.course) {
-      newErrors.course = "Выберите курс";
-    }
+
     formData.people_custom.forEach((person, index) => {
-      if (!person) {
-        newErrors[`people_custom[${index}]`] = "Введите имя желаемого соседа";
+      if (person && !person.trim()) {
+        newErrors[`people_custom[${index}]`] = "Неверный формат"; 
+      } else {
+        delete newErrors[`people_custom[${index}]`]; 
       }
     });
 
@@ -74,7 +125,7 @@ const PlaceForm = () => {
     } else {
       setFormData({ ...formData, [name]: value });
     }
-    validateForm();
+    validateField(name, value);
   };
 
   const handleAddPerson = () => {
@@ -85,6 +136,7 @@ const PlaceForm = () => {
     const newPeople = [...formData.people_custom];
     newPeople.splice(index, 1);
     setFormData({ ...formData, people_custom: newPeople });
+    validateField(`people_custom[${index}]`, ""); 
   };
 
   const handleSubmit = async (e) => {
@@ -115,7 +167,11 @@ const PlaceForm = () => {
           console.log('Response:', data);
         } else {
           console.error('Ошибка:', data);
-          setErrors(data);
+          if (data.phone) {
+            setErrors({ ...errors, phoneExists: 'Пользователь с таким номером уже зарегистрирован' });
+          } else if (data.error) {
+            setErrors({ ...errors, phoneExists: 'Пользователь с таким номером не зарегистрирован' });
+          }
         }
       } catch (error) {
         console.error('Ошибка сети:', error);
@@ -129,18 +185,6 @@ const PlaceForm = () => {
         <h1>-- Расселение --</h1>
         <div className="form-grid">
           <div>
-            <label>Имя</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Иван"
-              required
-            />
-            {errors.name && <span className="error">{errors.name}</span>}
-          </div>
-          <div>
             <label>Фамилия</label>
             <input
               type="text"
@@ -149,8 +193,22 @@ const PlaceForm = () => {
               onChange={handleChange}
               placeholder="Иванов"
               required
+              style={{ borderColor: errors.surname ? '#FF673D' : 'gray' }}
             />
-            {errors.surname && <span className="error">{errors.surname}</span>}
+            {errors.surname && <span className="error-message">{errors.surname}</span>}
+          </div>
+          <div>
+            <label>Имя</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Иван"
+              required
+              style={{ borderColor: errors.name ? '#FF673D' : 'gray' }}
+            />
+            {errors.name && <span className="error-message">{errors.name}</span>}
           </div>
           <div>
             <label>Отчество (при наличии)</label>
@@ -160,8 +218,9 @@ const PlaceForm = () => {
               value={formData.middle_name}
               onChange={handleChange}
               placeholder="Иванович"
+              style={{ borderColor: errors.middle_name ? '#FF673D' : 'gray' }}
             />
-            {errors.middle_name && <span className="error">{errors.middle_name}</span>}
+            {errors.middle_name && <span className="error-message">{errors.middle_name}</span>}
           </div>
           <div>
             <label>Ссылка на VK</label>
@@ -172,8 +231,9 @@ const PlaceForm = () => {
               onChange={handleChange}
               placeholder="https://vk.com/ivanov_vk"
               required
+              style={{ borderColor: errors.vk ? '#FF673D' : 'gray' }}
             />
-            {errors.vk && <span className="error">{errors.vk}</span>}
+            {errors.vk && <span className="error-message">{errors.vk}</span>}
           </div>
           <div>
             <label>Ссылка на tg</label>
@@ -184,29 +244,29 @@ const PlaceForm = () => {
               onChange={handleChange}
               placeholder="@ivanov_tg"
               required
+              style={{ borderColor: errors.tg ? '#FF673D' : 'gray' }}
             />
-            {errors.tg && <span className="error">{errors.tg}</span>}
+            {errors.tg && <span className="error-message">{errors.tg}</span>}
           </div>
           <div className='form-grid-item'>
-            <div>
+            <div className='form-grid-item-1'>
               <label>Курс</label>
               <CustomSelect
                 name="course"
                 value={formData.course}
                 onChange={handleChange}
                 options={[
-                  { value: '1', label: '1 (бак. / спец.)' },
-                  { value: '2', label: '2 (бак. / спец.)' },
-                  { value: '3', label: '3 (бак. / спец.)' },
-                  { value: '4', label: '4 (бак. / спец.)' },
-                  { value: '5', label: '5 (бак. / спец.)' },
-                  { value: '6', label: '1 (магистратура)' },
-                  { value: '7', label: '2 (магистратура)' },
+                  { value: 1, label: '1 (бак. / спец.)' },
+                  { value: 2, label: '2 (бак. / спец.)' },
+                  { value: 3, label: '3 (бак. / спец.)' },
+                  { value: 4, label: '4 (бак. / спец.)' },
+                  { value: 5, label: '5 (бак. / спец.)' },
+                  { value: 6, label: '1 (магистратура)' },
+                  { value: 7, label: '2 (магистратура)' },
                 ]}
               />
-              {errors.course && <span className="error">{errors.course}</span>}
             </div>
-            <div>
+            <div className='form-grid-item-2'>
               <label>Группа</label>
               <input
                 type="text"
@@ -215,8 +275,8 @@ const PlaceForm = () => {
                 onChange={handleChange}
                 placeholder="БИВ203"
                 required
+                style={{ borderColor: errors.group ? '#FF673D' : 'gray' }}
               />
-              {errors.group && <span className="error">{errors.group}</span>}
             </div>
           </div>
         </div>
@@ -230,7 +290,10 @@ const PlaceForm = () => {
               onChange={handleChange}
               placeholder="+7(900)777-14-88"
               required
+              style={{ borderColor: errors.phone ? '#FF673D' : 'gray' }}
             />
+            {errors.phone && <span className="error-message-2">{errors.phone}</span>}
+            {errors.phoneExists && <span className="error">{errors.phoneExists}</span>}
           </div>
           <div>
             <label>Образовательная программа</label>
@@ -241,20 +304,23 @@ const PlaceForm = () => {
               onChange={handleChange}
               placeholder="Информатика и вычислительная техника"
               required
+              style={{ borderColor: errors.program ? '#FF673D' : 'gray' }}
             />
+            {errors.program && <span className="error-message-3">{errors.program}</span>}
           </div>
           <div>
             <label>С кем хочешь жить?</label>
             {formData.people_custom.map((person, index) => (
-              <div key={index} className="person-input">
+              <div key={index} className="person-input" style={{ marginBottom: '10px' }}>
                 <input
                   type="text"
                   name={`people_custom[${index}]`}
                   value={person}
                   onChange={handleChange}
-                  placeholder={`Иванов Иван Иванович ${index + 1}`}
+                  placeholder={`Иванов Иван Иванович`}
+                  style={{ borderColor: errors[`people_custom[${index}]`] ? '#FF673D' : 'gray', marginRight: '5px' }}
                 />
-                {index > 0 && (
+                {index === 0 && formData.people_custom.length > 1 && ( 
                   <button type="button" className="remove-person" onClick={() => handleRemovePerson(index)}>
                     -
                   </button>
@@ -262,9 +328,12 @@ const PlaceForm = () => {
               </div>
             ))}
             {formData.people_custom.length < 3 && (
-              <button type="button" className="add-person" onClick={handleAddPerson}>
-                +
-              </button>
+              <div className='add'>
+                <p>Добавить человека</p>
+                <button type="button" className="add-person" onClick={handleAddPerson} style={{ marginRight: '5px' }}>
+                  +
+                </button>
+              </div>
             )}
           </div>
         </div>
