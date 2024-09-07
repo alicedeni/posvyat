@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CustomSelect from './CustomSelect';
 import castesImage from '../assets/images/castes.png'; 
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const CastesForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const CastesForm = () => {
     priority5: 'Пятый',
     priority6: 'Шестой',
   });
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
@@ -115,6 +117,7 @@ const CastesForm = () => {
         const data = await response.json();
         if (response.ok) {
           console.log('Response:', data);
+          navigate('/');
         } else {
           console.error('Ошибка:', data);
           setErrors(data);

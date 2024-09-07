@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CustomSelect from './CustomSelect';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const PlaceForm = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const PlaceForm = () => {
     course: 1,
     people_custom: [""]
   });
+  const navigate = useNavigate();
   
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
@@ -165,6 +167,7 @@ const PlaceForm = () => {
         const data = await response.json();
         if (response.ok) {
           console.log('Response:', data);
+          navigate('/castes');
         } else {
           console.error('Ошибка:', data);
           if (data.phone) {

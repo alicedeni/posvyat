@@ -651,3 +651,12 @@
 }
 
 }
+
+@media (max-width: 769px) and (min-width: 369px){
+  .photos-container {
+    height: 100%;
+  }
+  .photos-container img{
+    height: 100%;
+  }
+}

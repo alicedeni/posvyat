@@ -35,13 +35,12 @@ const Header = () => {
       <div className="header-mobile-toggle" onClick={toggleMobileMenu}></div> 
       {isMobileMenuOpen && (
         <div className="header-mobile">
-          <img src={TumbleweedIconMobile} alt="Tumbleweed" className="header-mobile-icon" /> 
           <ul className="header-mobile-list">
-            <li className="header-mobile-list-item"><a href="/">главная</a></li>
-            <li className="header-mobile-list-item"><a href="/registration">регистрация</a></li>
-            <li className="header-mobile-list-item"><a href="/transfer">трансфер</a></li>
-            <li className="header-mobile-list-item"><a href="/check-in">расселение</a></li>
-            <li className="header-mobile-list-item"><a href="/castes">касты</a></li>
+            <li className="header-mobile-list-item"><a href="/">Главная</a></li>
+            <li className="header-mobile-list-item"><a href="/registration">Регистрация</a></li>
+            <li className="header-mobile-list-item"><a href="/transfer">Трансфер</a></li>
+            <li className="header-mobile-list-item"><a href="/check-in">Расселение</a></li>
+            <li className="header-mobile-list-item"><a href="/castes">Касты</a></li>
           </ul>
         </div>
       )}

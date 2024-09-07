@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CustomSelect from './CustomSelect';
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -171,6 +173,7 @@ const RegistrationForm = () => {
         const data = await response.json();
         if (response.ok) {
           console.log('Response:', data);
+          navigate('/transfer');
         } else {
           console.error('Ошибка:', data);
           if (data.phone) {

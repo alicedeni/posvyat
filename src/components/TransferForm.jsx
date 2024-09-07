@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CustomSelect from './CustomSelect';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const TransferForm = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const TransferForm = () => {
     from: "Одинцово",
     departure_time: "",  
   });
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
@@ -159,6 +161,7 @@ const TransferForm = () => {
         const data = await response.json();
         if (response.ok) {
           console.log('Response:', data);
+          navigate('/check-in');
         } else {
           console.error('Ошибка:', data);
           if (data.phone) {
