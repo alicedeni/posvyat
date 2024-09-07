@@ -18,7 +18,7 @@ const RegistrationForm = () => {
     faculty: "",
     program: "",
     group: "",
-    transfer: "Одинцово",
+    transfer: "Да, от Одинцово и обратно",
     course: 1,
     health_features: "",
   });
@@ -249,7 +249,7 @@ const RegistrationForm = () => {
               name="vk"
               value={formData.vk}
               onChange={handleChange}
-              placeholder="https://vk.com/ivan4325"
+              placeholder={window.innerWidth <= 768 ? "https://vk.com/ivan" : "https://vk.com/ivanov_vk"}
               required
               style={{ borderColor: errors.vk ? '#FF673D' : (formData.vk ? 'white' : 'gray') }} 
             />
@@ -380,8 +380,8 @@ const RegistrationForm = () => {
               value={formData.transfer}
               onChange={handleChange}
               options={[
-                { value: 'Одинцово', label: 'Да, от Одинцово' },
-                { value: 'Парк Победы', label: 'Да, от Парка Победы' },
+                { value: 'Да, от Одинцово и обратно', label: 'Да, от Одинцово' },
+                { value: 'Да, от Парка Победы и обратно', label: 'Да, от Парка Победы' },
                 { value: 'Не нужен', label: 'Нет, не нужен' },
               ]}
             />

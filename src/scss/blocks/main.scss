@@ -354,14 +354,49 @@
   margin-right: 20px; 
 }
 
-@media (max-width: 1200px) and (min-width: 769px){
+@media (max-width: 1200px) and (min-width: 950px) {
   .info-blocks-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    height: 1100px;
-    align-items: center;
-    justify-content: center;
+      flex-wrap: wrap; 
+      justify-content: center; 
+      height: 1100px; 
   }
+
+  .info-block {
+      flex: 0 1 calc(5% - 15px);
+      margin: 0 5px;
+  }
+}
+
+@media (max-width: 950px) and (min-width: 768px){
+  .info-blocks-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 29px;
+    margin: 0px;
+    overflow: scroll;
+    overflow-x: auto;
+    width: 100%;
+    scroll-behavior: smooth; 
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .info-blocks-container::-webkit-scrollbar {
+    display: none; 
+  }
+  
+  .info-blocks-container {
+    -ms-overflow-style: none; 
+  }
+  
+  .info-blocks-container {
+    scrollbar-width: none;
+  }
+}
+
+
+
+@media (max-width: 1200px) and (min-width: 769px) {
+
   .grey-rectangle {
     width: 100%;
     height: 350px;
@@ -447,6 +482,7 @@
   }
 }
 
+
 @media (max-width: 768px){
   .info-blocks-container {
     display: flex;
@@ -529,20 +565,21 @@
   }
   .photos-container {
     height: 85%;
+    width: 100%;
   }
   .photos-container img{
     height: 85%;
   }
   .info-value {
     &-second {
-    margin-top: 100%;
+    margin-top: 150%;
     margin-bottom: 80px;
       &-text {
         position: absolute;
         font-size: 14px;
         bottom: -20px;
-        right: 150px;
-        width: 220px;
+        right: 75%;
+        width: 170px;
         z-index: 1;
       }
     }
@@ -552,7 +589,7 @@
     top: 60px; 
     left: 150px;
     z-index: 1;
-    width: 220px;
+    width: 170px;
     font-size: 14px;
   }
   .info-icon {
@@ -572,7 +609,8 @@
   .info-ticket-btn {
     position:relative;
     transform: skewY(0deg) skewX(0deg);
-    margin-top: -15%;
+    margin-top: 0%;
+    bottom: 50px;
     width: 170px;
     height: 28px;
     right: 0%;
@@ -650,11 +688,21 @@
 
 }
 
-@media (max-width: 769px) and (min-width: 369px){
+@media (max-width: 769px) and (min-width: 469px){
   .photos-container {
     height: 100%;
   }
   .photos-container img{
     height: 100%;
+  }
+  .info-value {
+
+    &-second {
+    margin-top: 60%;
+    margin-bottom: 80px;
+      &-text {
+          text-align: right;
+      }
+    }
   }
 }

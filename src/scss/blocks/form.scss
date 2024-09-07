@@ -57,6 +57,10 @@ h1 {
   position: relative;
 }
 
+.form-grid-two > div {
+  position: relative;
+}
+
 label {
   display: block;
   margin-bottom: 5px; 
@@ -141,22 +145,6 @@ button {
   align-items: center;
   top: 60%;
   right: 20px;
-  &-2 {
-    color: $orange;
-    font-size: 10px;
-    position: absolute;
-    align-items: center;
-    top: 40px;
-    left: 40%;
-  }
-  &-3{
-    color: $orange;
-    font-size: 10px;
-    position: absolute;
-    align-items: center;
-    top: 40px;
-    right: 10px;
-  }
 } 
 
 .priority-box {
@@ -272,23 +260,6 @@ button {
   .priority-box {
     width: 100%;
   }
-  .error-message {
-    &-2{
-      color: $orange;
-      font-size: 10px;
-      position: absolute;
-      align-items: center;
-      top: 30px;
-      left: 5%;
-    }
-    &-3 {
-      color: $orange;
-      font-size: 10px;
-      position: absolute;
-      align-items: center;
-      top: 110px;
-    }
-  } 
   .remove-person {
     border: none;
     margin-top: -38px;
@@ -311,3 +282,4 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+

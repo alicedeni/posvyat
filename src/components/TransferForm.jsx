@@ -240,7 +240,7 @@ const TransferForm = () => {
               name="vk"
               value={formData.vk}
               onChange={handleChange}
-              placeholder="https://vk.com/ivan4325"
+              placeholder={window.innerWidth <= 768 ? "https://vk.com/ivan" : "https://vk.com/ivanov_vk"}
               required
               style={{ borderColor: errors.vk ? '#FF673D' : (formData.vk ? 'white' : 'gray') }}
             />

@@ -232,7 +232,7 @@ const PlaceForm = () => {
               name="vk"
               value={formData.vk}
               onChange={handleChange}
-              placeholder="https://vk.com/ivanov_vk"
+              placeholder={window.innerWidth <= 768 ? "https://vk.com/ivan" : "https://vk.com/ivanov_vk"}
               required
               style={{ borderColor: errors.vk ? '#FF673D' : 'gray' }}
             />
@@ -295,7 +295,7 @@ const PlaceForm = () => {
               required
               style={{ borderColor: errors.phone ? '#FF673D' : 'gray' }}
             />
-            {errors.phone && <span className="error-message-2">{errors.phone}</span>}
+            {errors.phone && <span className="error-message">{errors.phone}</span>}
             {errors.phoneExists && <span className="error">{errors.phoneExists}</span>}
           </div>
           <div>
@@ -305,11 +305,11 @@ const PlaceForm = () => {
               name="program"
               value={formData.program}
               onChange={handleChange}
-              placeholder="Информатика и вычислительная техника"
+              placeholder={window.innerWidth <= 768 ? "ИВТ" : "Информатика и вычислительная техника"}
               required
               style={{ borderColor: errors.program ? '#FF673D' : 'gray' }}
             />
-            {errors.program && <span className="error-message-3">{errors.program}</span>}
+            {errors.program && <span className="error-message">{errors.program}</span>}
           </div>
           <div>
             <label>С кем хочешь жить?</label>
