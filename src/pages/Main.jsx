@@ -58,6 +58,7 @@ import date from '../assets/images/date.png';
 import door_left from '../assets/images/left_door.png';
 import door_right from '../assets/images/right_door.png';
 import ticket from '../assets/images/ticket.png';
+import ticket_mobile from '../assets/images/ticket_mobile.png';
 import vk from '../assets/images/vk.png';
 import tg from '../assets/images/tg.png';
 import Text from '../assets/icons/Text.svg';
@@ -71,6 +72,7 @@ const Main = () => {
     const [isLeftDoorOpen, setIsLeftDoorOpen] = useState(false);
     const [isRightDoorOpen, setIsRightDoorOpen] = useState(false);
     const [isDoorOpen, setIsDoorOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const rectangle1Images = [pic11, pic12, pic13, pic14, pic15, pic16, pic17, pic18, pic19];
     const rectangle2Images = [pic21, pic22, pic23, pic24, pic25, pic26, pic27, pic28, pic29];
     const rectangle3Images = [pic31, pic32, pic33, pic34, pic35, pic36, pic37, pic38, pic39];
@@ -90,6 +92,17 @@ const Main = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -206,7 +219,7 @@ const Main = () => {
                         <div className='info-window-text'>
                             <p style={{color: '#FFD5C9'}}>время и место</p>
                             <img src={date} alt="date" className='infor-window-text-date' />
-                            <button className='info-window-text-btn' onClick={handleButtonClick}>Хотеть:3</button>
+                            <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 20%'}}>Хотеть:3</button>
                         </div>
                         <div className='info-window-2'>
                         <TweenOne
@@ -232,7 +245,7 @@ const Main = () => {
             <p className='small-text'> П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Сдается мне, джентльмены, это была комедия» · П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Искусство, Кончита, требует жертв!» · П'24</p>
             <div className='info'>
                 <div className='info-ticket'>
-                    <img src={ticket} alt='ticket' />
+                    <img src={window.innerWidth <= 768 ? ticket_mobile : ticket}  alt='ticket' />
                     <button className='info-ticket-btn' onClick={handleButtonClick}>Зарегистрироваться</button>
                 </div>
             </div>

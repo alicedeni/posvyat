@@ -53,7 +53,7 @@ const CastesForm = () => {
         break;
       case 'priority4':
         if (formData.priority1 === value || formData.priority2 === value || formData.priority3 === value || formData.priority5 === value || formData.priority6 === value) {
-          newErrors.priority4 = `Приоритет уже выбран`;
+          newErrors.priority4 = `Приоритет "${value}" уже выбран`;
         } else {
           delete newErrors.priority4;
         }
@@ -137,7 +137,7 @@ const CastesForm = () => {
         <p className="registration-form-text">Ваша задача расставить касты по приоритетам. От их выбора зависит квест основной программы, выбирайте сердцем, а не разумом</p>
         <div className="form-img">
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 1" style={{ alignSelf: 'flex-start' }}/>
+            <img src={castesImage} alt="Приоритет 1" />
             <p>В тени ночного сумрака они предлагают товар, который не найдешь в салонах.</p>
             <CustomSelect
               value={formData.priority1}

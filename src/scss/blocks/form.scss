@@ -53,6 +53,10 @@ h1 {
   margin-bottom: 40px;
 }
 
+.form-img > div {
+  position: relative;
+}
+
 label {
   display: block;
   margin-bottom: 5px; 
@@ -159,6 +163,7 @@ button {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -290,7 +295,7 @@ button {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 769px){
   .error-message {
     &-2 {
       color: $orange;
@@ -301,4 +306,7 @@ button {
       left: 35%;
     }
   } 
+  .form-img {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
