@@ -208,9 +208,24 @@ const Main = () => {
             </div>
             <p className='small-text'>П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Живут же люди Влюбляются, ходят в театры, в библя» · П'24 · клондайк · П'24 · главное событие оcени ·
  П'24 · «.…в библио-те-ки.» · П'24</p>
-            <ScrollableRectangle images={rectangle1Images} />
-            <ScrollableRectangle images={rectangle2Images}/>
-            <ScrollableRectangle images={rectangle3Images}/>
+            <ScrollableRectangle 
+                images={rectangle1Images} 
+                width="100%" 
+                height="300px" 
+                skew={1} 
+            />
+            <ScrollableRectangle 
+                images={rectangle2Images} 
+                width="100%" 
+                height="450px" 
+                skew={0} 
+            />
+            <ScrollableRectangle 
+                images={rectangle3Images} 
+                width="100%" 
+                height="300px" 
+                skew={-1}
+            />
             <p className='small-text'> П'24 · клондайк · П'24 · главное событие оcени · П'24 · Запомните, джентльмены, эту страну погубит коррупция!!! · П'24 · клондайк · П'24 · главное событие оcени · П'24 · А тот бы джентльмен сказал: «Заткнись, пожалуйста, Хью!» · П'24</p>
             <div className='info'>
                 <div className='info-w'>

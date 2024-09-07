@@ -68,18 +68,15 @@
           margin: 30px 0;
           color: white;
           cursor: pointer;
-          text-decoration: none;
+          & a{
+            text-decoration: none;
+          }
+          
         }
       }
     }
   }
-  
-  .header-mobile-list-item:hover,
-  .header-mobile-list-item.hovered {
-    
-    background-color: $grey2;
-    border-radius: 5px;    
-  }
+
   .header-mobile-toggle {
     display: none;
     position: fixed; // или absolute?
