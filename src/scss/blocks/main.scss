@@ -453,8 +453,7 @@
     justify-content: space-around;
     gap: 29px;
     margin: 0px;
-    justify-content: center;
-    align-items: center;
+    overflow: scroll;
     overflow-x: auto;
     width: 100%;
     scroll-behavior: smooth; 

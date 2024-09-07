@@ -234,7 +234,7 @@ const Main = () => {
                         <div className='info-window-text'>
                             <p style={{color: '#FFD5C9'}}>время и место</p>
                             <img src={date} alt="date" className='infor-window-text-date' />
-                            <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 20%'}}>Хотеть:3</button>
+                            <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 20%', zIndex: (isLeftDoorOpen && isRightDoorOpen) ? 4 : 1}}>Хотеть:3</button>
                         </div>
                         <div className='info-window-2'>
                         <TweenOne
