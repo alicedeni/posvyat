@@ -44,7 +44,7 @@ const CastesForm = () => {
         index === Object.keys(formData).indexOf(field) ? value : val
       );
 
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i <= 6; i++) {
         delete newErrors[Object.keys(formData)[i]];
       }
 
