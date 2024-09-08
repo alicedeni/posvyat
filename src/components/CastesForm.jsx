@@ -6,17 +6,17 @@ import castes3 from '../assets/images/castes3.png';
 import castes4 from '../assets/images/castes4.png'; 
 import castes5 from '../assets/images/castes5.png'; 
 import castes6 from '../assets/images/castes6.png'; 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CastesForm = () => {
   const [formData, setFormData] = useState({
     phone: "",
-    priority1: 'Первый',
-    priority2: 'Второй',
-    priority3: 'Третий',
-    priority4: 'Четвертый',
-    priority5: 'Пятый',
-    priority6: 'Шестой',
+    smugglers: 'Первый',
+    scorpions: 'Второй',
+    ghosts: 'Третий',
+    traders: 'Четвертый',
+    deputy_marshals: 'Пятый',
+    deputy_sheriff: 'Шестой',
   });
   const navigate = useNavigate();
 
@@ -37,14 +37,15 @@ const CastesForm = () => {
       }
     }
 
-    if (field.startsWith('priority')) {
+    if (['smugglers', 'scorpions', 'ghosts', 'traders', 'deputy_marshals', 'deputy_sheriff'].includes(field)) {
       const priorityValues = Object.values(formData);
       
       const updatedPriorityValues = priorityValues.map((val, index) => 
-        index === parseInt(field.replace('priority', '')) ? value : val
+        index === Object.keys(formData).indexOf(field) ? value : val
       );
+
       for (let i = 0; i < 6; i++) {
-        delete newErrors[`priority${i + 1}`];
+        delete newErrors[Object.keys(formData)[i]];
       }
 
       const duplicateCount = updatedPriorityValues.filter(v => v === value).length;
@@ -55,7 +56,7 @@ const CastesForm = () => {
         const duplicateIndices = updatedPriorityValues.map((val, index) => (val === currentValue ? index : null)).filter(index => index !== null);
         if (duplicateIndices.length > 1){
           duplicateIndices.forEach(index => {
-            newErrors[`priority${index}`] = `Повторяющийся приоритет`;
+            newErrors[Object.keys(formData)[index]] = `Повторяющийся приоритет`;
           });
         }
       }
@@ -88,12 +89,12 @@ const CastesForm = () => {
           },
           body: JSON.stringify({
             phone: formData.phone,
-            priority1: formData.priority1,
-            priority2: formData.priority2,
-            priority3: formData.priority3,
-            priority4: formData.priority4,
-            priority5: formData.priority5,
-            priority6: formData.priority6,
+            smugglers: formData.smugglers,
+            scorpions: formData.scorpions,
+            ghosts: formData.ghosts,
+            traders: formData.traders,
+            deputy_marshals: formData.deputy_marshals,
+            deputy_sheriff: formData.deputy_sheriff,
           }),
         });
 
@@ -123,12 +124,12 @@ const CastesForm = () => {
         <p className="registration-form-text">Ваша задача расставить касты по приоритетам. От их выбора зависит квест основной программы, выбирайте сердцем, а не разумом</p>
         <div className="form-img">
           <div className="priority-box">
-            <img src={castes1} alt="Приоритет 1" />
+            <img src={castes1} alt="См smugglers" />
             <p>В тени ночного сумрака они предлагают товар, который не найдешь в салонах.</p>
             <CustomSelect
-              value={formData.priority1}
+              value={formData.smugglers}
               onChange={handleChange}
-              name="priority1"
+              name="smugglers"
               options={[
                 { value: 'Первый', label: 'Первый (I)' },
                 { value: 'Второй', label: 'Второй (II)' },
@@ -138,15 +139,15 @@ const CastesForm = () => {
                 { value: 'Шестой', label: 'Шестой (VI)' },
               ]}
             />
-            {errors.priority1 && <span className="error">{errors.priority1}</span>}
+            {errors.smugglers && <span className="error">{errors.smugglers}</span>}
           </div>
           <div className="priority-box">
-            <img src={castes2} alt="Приоритет 2" />
+            <img src={castes2} alt="Скorpions" />
             <p>Новая волна, жаждущая власти. Скорпионы не терпят слабости, их амбиции и численость растут с каждым днем.</p>
             <CustomSelect
-              value={formData.priority2}
+              value={formData.scorpions}
               onChange={handleChange}
-              name="priority2"
+              name="scorpions"
               options={[
                 { value: 'Первый', label: 'Первый (I)' },
                 { value: 'Второй', label: 'Второй (II)' },
@@ -156,16 +157,16 @@ const CastesForm = () => {
                 { value: 'Шестой', label: 'Шестой (VI)' },
               ]}
             />
-            {errors.priority2 && <span className="error">{errors.priority2}</span>}
+            {errors.scorpions && <span className="error">{errors.scorpions}</span>}
           </div>
 
           <div className="priority-box">
-            <img src={castes3} alt="Приоритет 3" />
+            <img src={castes3} alt="Призраки" />
             <p>Хозяева города, их имя внушает страх. Влиятельные, безжалостные бандиты. Пересечь им дорогу – подписать себе смертный приговор.</p>
             <CustomSelect
-              value={formData.priority3}
+              value={formData.ghosts}
               onChange={handleChange}
-              name="priority3"
+              name="ghosts"
               options={[
                 { value: 'Первый', label: 'Первый (I)' },
                 { value: 'Второй', label: 'Второй (II)' },
@@ -175,16 +176,16 @@ const CastesForm = () => {
                 { value: 'Шестой', label: 'Шестой (VI)' },
               ]}
             />
-            {errors.priority3 && <span className="error">{errors.priority3}</span>}
+            {errors.ghosts && <span className="error">{errors.ghosts}</span>}
           </div>
 
           <div className="priority-box">
-            <img src={castes4} alt="Приоритет 4" />
+            <img src={castes4} alt="Торговцы" />
             <p>Беспрекословные исполнители, олицетворяющие дисциплину. Глаза и руки Маршала.</p>
             <CustomSelect
-              value={formData.priority4}
+              value={formData.traders}
               onChange={handleChange}
-              name="priority4"
+              name="traders"
               options={[
                 { value: 'Первый', label: 'Первый (I)' },
                 { value: 'Второй', label: 'Второй (II)' },
@@ -194,16 +195,16 @@ const CastesForm = () => {
                 { value: 'Шестой', label: 'Шестой (VI)' },
               ]}
             />
-            {errors.priority4 && <span className="error">{errors.priority4}</span>}
+            {errors.traders && <span className="error">{errors.traders}</span>}
           </div>
 
           <div className="priority-box">
-            <img src={castes5} alt="Приоритет 5" />
+            <img src={castes5} alt="Заместители маршала" />
             <p>Блюстители закона, не пропускающие ни одну крысу. Лучшие из лучших, выбранные Шерифом лично.</p>
             <CustomSelect
-              value={formData.priority5}
+              value={formData.deputy_marshals}
               onChange={handleChange}
-              name="priority5"
+              name="deputy_marshals"
               options={[
                 { value: 'Первый', label: 'Первый (I)' },
                 { value: 'Второй', label: 'Второй (II)' },
@@ -213,16 +214,16 @@ const CastesForm = () => {
                 { value: 'Шестой', label: 'Шестой (VI)' },
               ]}
             />
-            {errors.priority5 && <span className="error">{errors.priority5}</span>}
+            {errors.deputy_marshals && <span className="error">{errors.deputy_marshals}</span>}
           </div>
 
           <div className="priority-box">
-            <img src={castes6} alt="Приоритет 6" />
+            <img src={castes6} alt="Заместители шерифа" />
             <p>Честные работники, зарабатывающие на жизнь продавцами. Обеспечивают город всем необходимым, их цены острые, но справедливые.</p>
             <CustomSelect
-              value={formData.priority6}
+              value={formData.deputy_sheriff}
               onChange={handleChange}
-              name="priority6"
+              name="deputy_sheriff"
               options={[
                 { value: 'Первый', label: 'Первый (I)' },
                 { value: 'Второй', label: 'Второй (II)' },
@@ -232,7 +233,7 @@ const CastesForm = () => {
                 { value: 'Шестой', label: 'Шестой (VI)' },
               ]}
             />
-            {errors.priority6 && <span className="error">{errors.priority6}</span>}
+            {errors.deputy_sheriff && <span className="error">{errors.deputy_sheriff}</span>}
           </div>
         </div>
         <div className='form-grid'>
