@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import CustomSelect from './CustomSelect';
-import castesImage from '../assets/images/castes.png'; 
+import castes1 from '../assets/images/castes1.png'; 
+import castes2 from '../assets/images/castes2.png'; 
+import castes3 from '../assets/images/castes3.png'; 
+import castes4 from '../assets/images/castes4.png'; 
+import castes5 from '../assets/images/castes5.png'; 
+import castes6 from '../assets/images/castes6.png'; 
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const CastesForm = () => {
@@ -22,60 +27,38 @@ const CastesForm = () => {
     const newErrors = { ...errors };
     const phoneRegex = /^(?:\+7|8)\d{10}$|^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
 
-    switch (field) {
-      case 'phone':
-        if (!value) {
-          newErrors.phone = "Обязательное поле";
-        } else if (!phoneRegex.test(value)) {
-          newErrors.phone = "Неверный формат";
-        } else {
-          delete newErrors.phone;
+    if (field === 'phone') {
+      if (!value) {
+        newErrors.phone = "Обязательное поле";
+      } else if (!phoneRegex.test(value)) {
+        newErrors.phone = "Неверный формат";
+      } else {
+        delete newErrors.phone;
+      }
+    }
+
+    if (field.startsWith('priority')) {
+      const priorityValues = Object.values(formData);
+      
+      const updatedPriorityValues = priorityValues.map((val, index) => 
+        index === parseInt(field.replace('priority', '')) ? value : val
+      );
+      for (let i = 0; i < 6; i++) {
+        delete newErrors[`priority${i + 1}`];
+      }
+
+      const duplicateCount = updatedPriorityValues.filter(v => v === value).length;
+      const duplicateIndices = updatedPriorityValues.map((val, index) => (val === value ? index : null)).filter(index => index !== null);
+      const duplicatedInd = [];
+      for (let i = 0; i < updatedPriorityValues.length; i++) {
+        const currentValue = updatedPriorityValues[i];
+        const duplicateIndices = updatedPriorityValues.map((val, index) => (val === currentValue ? index : null)).filter(index => index !== null);
+        if (duplicateIndices.length > 1){
+          duplicateIndices.forEach(index => {
+            newErrors[`priority${index}`] = `Повторяющийся приоритет`;
+          });
         }
-        break;
-      case 'priority1':
-        if (formData.priority2 === value || formData.priority3 === value || formData.priority4 === value || formData.priority5 === value || formData.priority6 === value) {
-          newErrors.priority1 = `Приоритет уже выбран`;
-        } else {
-          delete newErrors.priority1;
-        }
-        break;
-      case 'priority2':
-        if (formData.priority1 === value || formData.priority3 === value || formData.priority4 === value || formData.priority5 === value || formData.priority6 === value) {
-          newErrors.priority2 = `Приоритет уже выбран`;
-        } else {
-          delete newErrors.priority2;
-        }
-        break;
-      case 'priority3':
-        if (formData.priority1 === value || formData.priority2 === value || formData.priority4 === value || formData.priority5 === value || formData.priority6 === value) {
-          newErrors.priority3 = `Приоритет уже выбран`;
-        } else {
-          delete newErrors.priority3;
-        }
-        break;
-      case 'priority4':
-        if (formData.priority1 === value || formData.priority2 === value || formData.priority3 === value || formData.priority5 === value || formData.priority6 === value) {
-          newErrors.priority4 = `Приоритет "${value}" уже выбран`;
-        } else {
-          delete newErrors.priority4;
-        }
-        break;
-      case 'priority5':
-        if (formData.priority1 === value || formData.priority2 === value || formData.priority3 === value || formData.priority4 === value || formData.priority6 === value) {
-          newErrors.priority5 = `Приоритет уже выбран`;
-        } else {
-          delete newErrors.priority5;
-        }
-        break;
-      case 'priority6':
-        if (formData.priority1 === value || formData.priority2 === value || formData.priority3 === value || formData.priority4 === value || formData.priority5 === value) {
-          newErrors.priority6 = `Приоритет уже выбран`;
-        } else {
-          delete newErrors.priority6;
-        }
-        break;
-      default:
-        break;
+      }
     }
 
     setErrors(newErrors);
@@ -140,7 +123,7 @@ const CastesForm = () => {
         <p className="registration-form-text">Ваша задача расставить касты по приоритетам. От их выбора зависит квест основной программы, выбирайте сердцем, а не разумом</p>
         <div className="form-img">
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 1" />
+            <img src={castes1} alt="Приоритет 1" />
             <p>В тени ночного сумрака они предлагают товар, который не найдешь в салонах.</p>
             <CustomSelect
               value={formData.priority1}
@@ -158,7 +141,7 @@ const CastesForm = () => {
             {errors.priority1 && <span className="error">{errors.priority1}</span>}
           </div>
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 2" />
+            <img src={castes2} alt="Приоритет 2" />
             <p>Новая волна, жаждущая власти. Скорпионы не терпят слабости, их амбиции и численость растут с каждым днем.</p>
             <CustomSelect
               value={formData.priority2}
@@ -177,7 +160,7 @@ const CastesForm = () => {
           </div>
 
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 3" />
+            <img src={castes3} alt="Приоритет 3" />
             <p>Хозяева города, их имя внушает страх. Влиятельные, безжалостные бандиты. Пересечь им дорогу – подписать себе смертный приговор.</p>
             <CustomSelect
               value={formData.priority3}
@@ -196,7 +179,7 @@ const CastesForm = () => {
           </div>
 
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 4" />
+            <img src={castes4} alt="Приоритет 4" />
             <p>Беспрекословные исполнители, олицетворяющие дисциплину. Глаза и руки Маршала.</p>
             <CustomSelect
               value={formData.priority4}
@@ -215,7 +198,7 @@ const CastesForm = () => {
           </div>
 
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 5" />
+            <img src={castes5} alt="Приоритет 5" />
             <p>Блюстители закона, не пропускающие ни одну крысу. Лучшие из лучших, выбранные Шерифом лично.</p>
             <CustomSelect
               value={formData.priority5}
@@ -234,7 +217,7 @@ const CastesForm = () => {
           </div>
 
           <div className="priority-box">
-            <img src={castesImage} alt="Приоритет 6" />
+            <img src={castes6} alt="Приоритет 6" />
             <p>Честные работники, зарабатывающие на жизнь продавцами. Обеспечивают город всем необходимым, их цены острые, но справедливые.</p>
             <CustomSelect
               value={formData.priority6}
