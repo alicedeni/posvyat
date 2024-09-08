@@ -254,6 +254,81 @@
     transform-origin: center center;
     transition: transform 0.3s;
     font-size: 16px;
+    &-1 {
+      background-color: $grey3;
+      min-width: 275px;
+      max-width: 100%;
+      text-align: left;
+      padding: 10px;
+      transform-origin: center center;
+      transition: transform 0.3s;
+      font-size: 16px;
+      transform: rotate(8deg);
+      &:hover {
+        transform: scale(1.2) rotate(8deg);
+        font-size: 20px;
+      }
+    }
+    &-2 {
+      background-color: $grey3;
+      min-width: 275px;
+      max-width: 100%;
+      text-align: left;
+      padding: 10px;
+      transform-origin: center center;
+      transition: transform 0.3s;
+      font-size: 16px;
+      transform: rotate(4deg);
+      &:hover {
+        transform: scale(1.2) rotate(4deg);
+        font-size: 20px;
+      }
+    }
+    &-3 {
+      background-color: $grey3;
+      min-width: 275px;
+      max-width: 100%;
+      text-align: left;
+      padding: 10px;
+      transform-origin: center center;
+      transition: transform 0.3s;
+      font-size: 16px;
+      transform: rotate(-2.25deg);
+      &:hover {
+        transform: scale(1.2) rotate(-2.25deg);
+        font-size: 20px;
+      }
+    }
+    &-4 {
+      background-color: $grey3;
+      min-width: 275px;
+      max-width: 100%;
+      text-align: left;
+      padding: 10px;
+      transform-origin: center center;
+      transition: transform 0.3s;
+      font-size: 16px;
+      transform: rotate(1.5deg);
+      &:hover {
+        transform: scale(1.2) rotate(1.5deg);
+        font-size: 20px;
+      }
+    }
+    &-5 {
+      background-color: $grey3;
+      min-width: 275px;
+      max-width: 100%;
+      text-align: left;
+      padding: 10px;
+      transform-origin: center center;
+      transition: transform 0.3s;
+      font-size: 16px;
+      transform: rotate(5deg);
+      &:hover {
+        transform: scale(1.2) rotate(5deg);
+        font-size: 20px;
+      }
+    }
   }
   
   .info-block:hover {
@@ -358,12 +433,32 @@
   .info-blocks-container {
       flex-wrap: wrap; 
       justify-content: center; 
-      height: 1100px; 
+      height: 1200px; 
   }
 
   .info-block {
       flex: 0 1 calc(5% - 15px);
       margin: 0 5px;
+      &-1{
+        flex: 0 1 calc(5% - 15px);
+        margin: 0 5px;
+      }
+      &-2{
+        flex: 0 1 calc(5% - 15px);
+        margin: 0 5px;
+      }
+      &-3{
+        flex: 0 1 calc(5% - 15px);
+        margin: 0 5px;
+      }
+      &-4{
+        flex: 0 1 calc(5% - 15px);
+        margin: 0 5px;
+      }
+      &-5{
+        flex: 0 1 calc(5% - 15px);
+        margin: 0 5px;
+      }
   }
 }
 
@@ -549,9 +644,7 @@
     clip-path: inset(0 round 5px); 
   }
   .small-text {
-    font-size: 20px;
-    color: $grey;
-    width: 100%;
+    white-space: nowrap; 
     overflow: hidden;
 }
   .top-strip {
@@ -610,7 +703,7 @@
     position:relative;
     transform: skewY(0deg) skewX(0deg);
     margin-top: 0%;
-    bottom: 50px;
+    bottom: 100px;
     width: 170px;
     height: 28px;
     right: 0%;

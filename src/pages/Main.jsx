@@ -1,7 +1,6 @@
 import React, {useRef, useEffect, useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../components/Header'; 
-import InfoBlock from '../components/InfoBlock';
 import photo1 from '../assets/images/1.png';
 import photo2 from '../assets/images/2.png';
 import photo3 from '../assets/images/3.png';
@@ -185,13 +184,26 @@ const Main = () => {
             <p className='small-text'>· клондайк · П'24 · клондайк · П'24 · главное событие осени · П'24 · клондайк · П'24 · клондайк · П'24 · главное событие осени · П'24 · клондайк · П'24 · клондайк · П'24 · главное событие осени · П'24 </p>
             <div className='info'>
                 <div className='info-blocks-container'>
-                    {infoBlockData.map((data, index) => (
-                        <InfoBlock
-                            key={index}
-                            imageSrc={data.imageSrc}
-                            text={data.text}
-                        />
-                    ))}
+                    <div className="info-block-1">
+                        <img src={photo031} alt={""} className="info-block-image"/>
+                        <p className="info-block-text"></p>
+                    </div>
+                    <div className="info-block-2">
+                        <img src={photo032} alt={""} className="info-block-image"/>
+                        <p className="info-block-text">Мы знаем, как важен здоровый сон для студентов, поэтому тебя ждёт уютная комната и тёплое спальное место. <br/>Также в комнатах самые стойкие смогут продолжить вечер со своей компанией!</p>
+                    </div>
+                    <div className="info-block-3">
+                        <img src={photo033} alt={""} className="info-block-image"/>
+                        <p className="info-block-text">Тебе не придётся думать о том, как доехать до места проведения или добраться до метро после Посвята</p>
+                    </div>
+                    <div className="info-block-4">
+                        <img src={photo034} alt={""} className="info-block-image"/>
+                        <p className="info-block-text">Собираешься много общаться, петь и танцевать? Хочешь, чтобы сил хватило до утра? <br/>Тогда шведский стол со вкусной полезной едой – то, что нужно!</p>
+                    </div>
+                    <div className="info-block-5">
+                        <img src={photo035} alt={""} className="info-block-image"/>
+                        <p className="info-block-text">Найдешь полезные знакомства или друзей на всю жизнь</p>
+                    </div>
                 </div>
                 <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 22%' }}>Хотеть:3</button>
             </div>
@@ -274,9 +286,9 @@ const Main = () => {
                             <img src={tg} alt="Telegram" />
                         </a>
                     </div>
-                    <div>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <img src={arrowImage} alt="Scroll to top" onClick={scrollToTop} style={{ cursor: 'pointer' }} />
-                        <p onClick={scrollToTop} style={{ cursor: 'pointer' }}>Наверх</p>
+                        <p onClick={scrollToTop} style={{ cursor: 'pointer', textAlign: 'center' }}>Наверх</p>
                     </div>
                 </div>
             </div>
