@@ -181,7 +181,7 @@ const CastesForm = () => {
 
           <div className="priority-box">
             <img src={castes4} alt="Торговцы" />
-            <p>Беспрекословные исполнители, олицетворяющие дисциплину. Глаза и руки Маршала.</p>
+            <p>Честные работники, зарабатывающие на жизнь продавцами. Обеспечивают город всем необходимым, их цены острые, но справедливые.</p>
             <CustomSelect
               value={formData.traders}
               onChange={handleChange}
@@ -200,7 +200,7 @@ const CastesForm = () => {
 
           <div className="priority-box">
             <img src={castes5} alt="Заместители маршала" />
-            <p>Блюстители закона, не пропускающие ни одну крысу. Лучшие из лучших, выбранные Шерифом лично.</p>
+            <p>Беспрекословные исполнители, олицетворяющие дисциплину. Глаза и руки Маршала. </p>
             <CustomSelect
               value={formData.deputy_marshals}
               onChange={handleChange}
@@ -219,7 +219,7 @@ const CastesForm = () => {
 
           <div className="priority-box">
             <img src={castes6} alt="Заместители шерифа" />
-            <p>Честные работники, зарабатывающие на жизнь продавцами. Обеспечивают город всем необходимым, их цены острые, но справедливые.</p>
+            <p>Блюстители закона, не пропускающие ни одну крысу. Лучшие из лучших, выбранные Шерифом лично.</p>
             <CustomSelect
               value={formData.deputy_sheriff}
               onChange={handleChange}
