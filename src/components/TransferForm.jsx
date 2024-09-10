@@ -6,7 +6,7 @@ const TransferForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
-    middle_name: None,
+    middle_name: "",
     email: "",
     vk: "",
     tg: "",

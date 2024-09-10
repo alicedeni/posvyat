@@ -6,7 +6,7 @@ const PlaceForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
-    middle_name: None,
+    middle_name: "",
     vk: "",
     tg: "",
     phone: "",
