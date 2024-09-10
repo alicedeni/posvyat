@@ -30,8 +30,10 @@ const CastesForm = () => {
     if (field === 'phone') {
       if (!value) {
         newErrors.phone = "Обязательное поле";
+        delete newErrors.phoneExists;
       } else if (!phoneRegex.test(value)) {
         newErrors.phone = "Неверный формат";
+        delete newErrors.phoneExists;
       } else {
         delete newErrors.phone;
       }

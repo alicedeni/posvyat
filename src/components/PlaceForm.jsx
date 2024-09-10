@@ -6,7 +6,7 @@ const PlaceForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
-    middle_name: "",
+    middle_name: None,
     vk: "",
     tg: "",
     phone: "",
@@ -74,8 +74,10 @@ const PlaceForm = () => {
       case 'phone':
         if (!value) {
           newErrors.phone = "Обязательное поле";
+          delete newErrors.phoneExists;
         } else if (!phoneRegex.test(value)) {
           newErrors.phone = "Неверный формат";
+          delete newErrors.phoneExists;
         } else {
           delete newErrors.phone;
         }
