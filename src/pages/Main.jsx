@@ -70,7 +70,7 @@ const Main = () => {
     const rightDoorRef = useRef(null);
     const [isLeftDoorOpen, setIsLeftDoorOpen] = useState(false);
     const [isRightDoorOpen, setIsRightDoorOpen] = useState(false);
-    const [isDoorOpen, setIsDoorOpen] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const rectangle1Images = [pic11, pic12, pic13, pic14, pic15, pic16, pic17, pic18, pic19];
     const rectangle2Images = [pic21, pic22, pic23, pic24, pic25, pic26, pic27, pic28, pic29];
@@ -155,7 +155,14 @@ const Main = () => {
                     <p className="grey-rectangle-text">Не пропусти главное событие студенчества...</p>
                     <div className="black-strip bottom-strip"></div>
                 </div>
-                <button onClick={handleButtonClick} style={{ backgroundColor: '#E7E2FF', marginBottom: '80px' }}>Регистрация</button>
+                <button onClick={handleButtonClick}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{ backgroundColor: isHovered ? "#E7E2FF" : "transparent",
+                color: isHovered ? '#212022' : '#E7E2FF',
+                border: '2px solid #E7E2FF',
+                transition: 'background-color 0.3s, color 0.3s',
+                marginBottom: '80px' }}>Регистрация</button>
             </div>
             <p className='small-text'> П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Сдается мне, джентльмены, это была комедия» · П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Искусство, Кончита, требует жертв!» · П'24</p>
             <div className='info'>
@@ -179,7 +186,13 @@ const Main = () => {
                         <p className='info-value-second-text'>В Telegram-канале Посвята —<br/> закулисье подготовки, а всю важную <br/> информацию ты найдёшь в группе<br/> ВКонтакте и боте.</p>
                     </div>
                 </div>
-                <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#FFD5C9', border: '2px solid #FFD5C9', padding: '0% 23%' }}>Я еду!</button>
+                <button onClick={handleButtonClick}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{ backgroundColor: isHovered ? '#FFD5C9' : 'transparent',
+                color: isHovered ? '#212022' : '#FFD5C9',
+                border: '2px solid #FFD5C9', padding: '0% 23%',
+                transition: 'background-color 0.3s, color 0.3s',}}>Я еду!</button>
             </div>
             <p className='small-text'>· клондайк · П'24 · клондайк · П'24 · главное событие осени · П'24 · клондайк · П'24 · клондайк · П'24 · главное событие осени · П'24 · клондайк · П'24 · клондайк · П'24 · главное событие осени · П'24 </p>
             <div className='info'>
@@ -205,7 +218,14 @@ const Main = () => {
                         <p className="info-block-text">Найдешь полезные знакомства или друзей на всю жизнь</p>
                     </div>
                 </div>
-                <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 22%' }}>Хотеть:3</button>
+                <button onClick={handleButtonClick} 
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{ backgroundColor: isHovered ? "#E7E2FF" : "transparent",
+                color: isHovered ? '#212022' : '#E7E2FF',
+                border: '2px solid #E7E2FF',
+                transition: 'background-color 0.3s, color 0.3s',
+                marginBottom: '80px', padding: '0% 22%' }}>Хотеть:3</button>
             </div>
             <p className='small-text'>· П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Сдается мне, джентльмены, это была комедия» · П'24 · клондайк · П'24 · главное событие оcени · 
         П'24 · «Искусство, Кончита, требует жертв!» · П'24</p>
@@ -216,7 +236,14 @@ const Main = () => {
                     <img src={card3} alt="card3" className="info-cards-3" />
                     <img src={card4} alt="card4" className="info-cards-4" />
                 </div>
-                <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 22%' }}>Хотеть:3</button>
+                <button onClick={handleButtonClick} 
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{ backgroundColor: isHovered ? "#E7E2FF" : "transparent",
+                color: isHovered ? '#212022' : '#E7E2FF',
+                border: '2px solid #E7E2FF',
+                transition: 'background-color 0.3s, color 0.3s',
+                marginBottom: '80px', padding: '0% 22%' }}>Хотеть:3</button>
             </div>
             <p className='small-text'>П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Живут же люди Влюбляются, ходят в театры, в библя» · П'24 · клондайк · П'24 · главное событие оcени ·
  П'24 · «.…в библио-те-ки.» · П'24</p>
@@ -246,7 +273,21 @@ const Main = () => {
                         <div className='info-window-text'>
                             <p style={{color: '#FFD5C9'}}>время и место</p>
                             <img src={date} alt="date" className='infor-window-text-date' />
-                            <button onClick={handleButtonClick} style={{ backgroundColor: 'transparent', color: '#E7E2FF', border: '2px solid #E7E2FF', padding: '0% 20%', zIndex: (isLeftDoorOpen && isRightDoorOpen) ? 4 : 1}}>Хотеть:3</button>
+                            <button
+                                onClick={handleButtonClick}
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                                style={{
+                                backgroundColor: isHovered ? '#E7E2FF' : 'transparent',
+                                color: isHovered ? '#212022' : '#E7E2FF',
+                                border: '2px solid #E7E2FF',
+                                padding: '0% 20%',
+                                zIndex: (isLeftDoorOpen && isRightDoorOpen) ? (isHovered ? 5 : 4) : 1,
+                                transition: 'background-color 0.3s, color 0.3s, z-index 5s ease',
+                                }}
+                            >
+                                Хотеть:3
+                            </button>
                         </div>
                         <div className='info-window-2'>
                         <TweenOne

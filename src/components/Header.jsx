@@ -36,7 +36,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="header-mobile">
           <ul className="header-mobile-list">
-            <li className="header-mobile-list-item"><a href="/">Главная</a></li>
+            <li className="header-mobile-list-item" style={{marginTop: '50px'}}><a href="/">Главная</a></li>
             <li className="header-mobile-list-item"><a href="/registration">Регистрация</a></li>
             <li className="header-mobile-list-item"><a href="/transfer">Трансфер</a></li>
             <li className="header-mobile-list-item"><a href="/check-in">Расселение</a></li>

@@ -153,6 +153,11 @@
         color: $orange;
         text-align: center;
         padding: 0px;
+        transition: background-color 0.3s, color 0.3s;
+        &:hover {
+          background-color: $orange;
+          color: $grey3;
+        }
       }
     }
 }

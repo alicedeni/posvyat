@@ -50,7 +50,7 @@
       top: 0;
       right: 0;
       width: 50%;
-      height: 50%;
+      height: auto;
       background-color: $grey3; 
       z-index: 999;
       flex-direction: column;
@@ -66,11 +66,17 @@
   
         &-item {
           font-size: 24px;
-          margin: 30px 0;
+          margin: 15px 0px;
+          padding: 12px 24px;
+          width: 100%;
           color: white;
           cursor: pointer;
           & a{
             text-decoration: none;
+          }
+          &:hover {
+            background-color: $grey2;
+            border-radius: 10px; 
           }
           
         }
