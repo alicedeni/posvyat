@@ -60,6 +60,11 @@ import ticket from '../assets/images/ticket.png';
 import ticket_mobile from '../assets/images/ticket_mobile.png';
 import vk from '../assets/images/vk.png';
 import tg from '../assets/images/tg.png';
+import pumpup from '../assets/images/pumpup.png';
+import nova from '../assets/images/nova.png';
+import ddx from '../assets/images/ddx.png';
+import powercell from '../assets/images/powercell.png';
+import gigagames from '../assets/images/gigagames.png';
 import Text from '../assets/icons/Text.svg';
 import ScrollableRectangle from '../components/ScrollableRectangle';
 import TweenOne from 'rc-tween-one';
@@ -82,6 +87,15 @@ const Main = () => {
         { imageSrc: photo034, text: "Собираешься много общаться, петь и танцевать? Хочешь, чтобы сил хватило до утра?\nТогда шведский стол со вкусной полезной едой – то, что нужно!" },
         { imageSrc: photo035, text: "Найдешь полезные знакомства или друзей на всю жизнь" }
     ];
+    const images = [pumpup, nova, ddx, powercell, gigagames];
+    const duplicatedImages = [...images, ...images, ...images, ...images, ...images];
+    const scrollRef = useRef(null);
+
+    const handleScroll = (event) => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft += event.deltaY;
+        }
+    };
     
 
     const handleButtonClick = () => {
@@ -229,6 +243,14 @@ const Main = () => {
             </div>
             <p className='small-text'>· П'24 · клондайк · П'24 · главное событие оcени · П'24 · «Сдается мне, джентльмены, это была комедия» · П'24 · клондайк · П'24 · главное событие оcени · 
         П'24 · «Искусство, Кончита, требует жертв!» · П'24</p>
+            <div onWheel={handleScroll} 
+                style={{ width: "100%", height: "200px"}}>
+                    <div className="image-container" ref={scrollRef} style={{gap: '100px'}} >
+                        {duplicatedImages.map((image, index) => (
+                            <img src={image} alt={`Image ${index}`} key={index} className="scrollable-image"  />
+                        ))}
+                    </div>
+            </div>
             <div className='info'>
                 <div className='info-cards'>
                     <img src={card1} alt="card1" className="info-cards-1" />
